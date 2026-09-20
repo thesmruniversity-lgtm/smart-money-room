@@ -2239,6 +2239,11 @@ footer{
 
 <body>
 
+<!-- Welcome voice-over: plays once. Browsers may require first user interaction before sound can start. -->
+<audio id="welcomeAudio" preload="auto" autoplay playsinline>
+    <source src="welcome.mp3" type="audio/mpeg">
+</audio>
+
 
 <!-- =====================================================
      ANIMATED BACKGROUND
@@ -4029,6 +4034,52 @@ window.addEventListener("scroll", () => {
     }
 
 });
+
+
+/* WELCOME VOICE-OVER */
+
+const welcomeAudio = document.getElementById("welcomeAudio");
+let welcomeStarted = false;
+
+function removeWelcomeListeners(){
+    document.removeEventListener("pointerdown", startWelcomeVoice);
+    document.removeEventListener("touchstart", startWelcomeVoice);
+    document.removeEventListener("keydown", startWelcomeVoice);
+}
+
+function startWelcomeVoice(){
+    if(!welcomeAudio || welcomeStarted) return;
+
+    welcomeAudio.volume = 0.85;
+
+    const playAttempt = welcomeAudio.play();
+
+    if(playAttempt && typeof playAttempt.then === "function"){
+        playAttempt.then(() => {
+            welcomeStarted = true;
+            removeWelcomeListeners();
+        }).catch(() => {
+            /* Autoplay with sound was blocked. First click/touch/key will retry. */
+        });
+    }
+}
+
+if(welcomeAudio){
+    welcomeAudio.loop = false;
+    welcomeAudio.volume = 0.85;
+
+    window.addEventListener("load", startWelcomeVoice, {once:true});
+
+    /* Reliable fallback for browsers that block audible autoplay. */
+    document.addEventListener("pointerdown", startWelcomeVoice, {passive:true});
+    document.addEventListener("touchstart", startWelcomeVoice, {passive:true});
+    document.addEventListener("keydown", startWelcomeVoice);
+
+    welcomeAudio.addEventListener("play", () => {
+        welcomeStarted = true;
+        removeWelcomeListeners();
+    }, {once:true});
+}
 
 </script>
 
