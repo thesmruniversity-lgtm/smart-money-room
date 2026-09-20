@@ -4,25 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Smart Money Room | Learn Trading From Scratch</title>
+<title>The Smart Money Room | Free Trading Education & Live Trading</title>
 
-<meta name="description" content="Learn trading from scratch for free. Join live market analysis and trading sessions, practice what you learn and build the skills to understand real markets.">
+<meta name="description" content="Free beginner-friendly trading education with live trading sessions, real-time market analysis, demo practice and community learning for Gold, USOIL and Bitcoin.">
 
 <link rel="icon" type="image/png" href="logo.png">
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
 
 :root{
-    --bg:#070809;
+    --bg:#060708;
     --surface:#0c0e10;
     --surface2:#101316;
     --white:#f5f3ed;
-    --muted:#8d9299;
+    --muted:#92979d;
     --muted2:#62676d;
     --line:rgba(255,255,255,.09);
     --gold:#d5ad4f;
+    --gold2:#a77d28;
     --gold-soft:rgba(213,173,79,.12);
 }
 
@@ -44,33 +44,6 @@ body{
     line-height:1.6;
 }
 
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-3;
-    background:
-        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-    background-size:72px 72px;
-    mask-image:linear-gradient(to bottom,black,transparent 85%);
-}
-
-body:after{
-    content:"";
-    position:fixed;
-    width:800px;
-    height:800px;
-    right:-350px;
-    top:-250px;
-    border-radius:50%;
-    background:rgba(189,143,35,.10);
-    filter:blur(150px);
-    pointer-events:none;
-    z-index:-2;
-}
-
 a{
     color:inherit;
     text-decoration:none;
@@ -89,9 +62,9 @@ img{
     margin:auto;
 }
 
-/* tighter than previous version */
 section{
-    padding:95px 0;
+    padding:70px 0;
+    position:relative;
 }
 
 .gold{
@@ -100,7 +73,307 @@ section{
 
 
 /* =====================================================
-   NAVIGATION
+   FULL PAGE ANIMATED TECHNICAL BACKGROUND
+===================================================== */
+
+.tech-background{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    overflow:hidden;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 78% 16%,rgba(183,132,26,.11),transparent 32%),
+        radial-gradient(circle at 15% 72%,rgba(213,173,79,.035),transparent 28%),
+        linear-gradient(180deg,#060708,#070809 55%,#060708);
+}
+
+.tech-grid{
+    position:absolute;
+    inset:-20%;
+    opacity:.42;
+
+    background-image:
+        linear-gradient(rgba(213,173,79,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(213,173,79,.055) 1px,transparent 1px);
+
+    background-size:75px 75px;
+
+    transform:
+        perspective(850px)
+        rotateX(64deg)
+        translateY(20%);
+
+    transform-origin:center center;
+
+    animation:gridMove 18s linear infinite;
+}
+
+@keyframes gridMove{
+    0%{
+        background-position:0 0,0 0;
+    }
+
+    100%{
+        background-position:0 75px,75px 0;
+    }
+}
+
+
+/* animated wavy lines */
+
+.wave{
+    position:absolute;
+    width:130%;
+    height:350px;
+    left:-15%;
+    opacity:.22;
+    filter:blur(.1px);
+}
+
+.wave:before,
+.wave:after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        repeating-radial-gradient(
+            ellipse at center,
+            transparent 0,
+            transparent 13px,
+            rgba(213,173,79,.17) 14px,
+            transparent 15px
+        );
+
+    transform:scaleY(.25) rotate(-3deg);
+}
+
+.wave-one{
+    top:7%;
+    animation:waveFloatOne 15s ease-in-out infinite alternate;
+}
+
+.wave-two{
+    top:42%;
+    opacity:.12;
+    animation:waveFloatTwo 20s ease-in-out infinite alternate;
+}
+
+.wave-three{
+    top:76%;
+    opacity:.09;
+    animation:waveFloatOne 24s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes waveFloatOne{
+    0%{
+        transform:translateX(-5%) translateY(-15px) rotate(-2deg);
+    }
+
+    100%{
+        transform:translateX(5%) translateY(35px) rotate(2deg);
+    }
+}
+
+@keyframes waveFloatTwo{
+    0%{
+        transform:translateX(5%) translateY(20px) rotate(2deg);
+    }
+
+    100%{
+        transform:translateX(-6%) translateY(-30px) rotate(-2deg);
+    }
+}
+
+
+/* technical vertical data lines */
+
+.data-lines{
+    position:absolute;
+    inset:0;
+    opacity:.22;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            transparent 9%,
+            rgba(213,173,79,.09) 9.05%,
+            transparent 9.1%,
+            transparent 27%,
+            rgba(213,173,79,.05) 27.05%,
+            transparent 27.1%,
+            transparent 58%,
+            rgba(213,173,79,.07) 58.05%,
+            transparent 58.1%,
+            transparent 83%,
+            rgba(213,173,79,.06) 83.05%,
+            transparent 83.1%
+        );
+
+    animation:dataShift 9s ease-in-out infinite alternate;
+}
+
+@keyframes dataShift{
+    from{
+        transform:translateY(-20px);
+        opacity:.12;
+    }
+
+    to{
+        transform:translateY(20px);
+        opacity:.25;
+    }
+}
+
+
+/* moving glow */
+
+.ambient-glow{
+    position:absolute;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(213,173,79,.09),
+            rgba(213,173,79,.025) 42%,
+            transparent 68%
+        );
+
+    filter:blur(30px);
+
+    animation:ambientMove 18s ease-in-out infinite alternate;
+}
+
+@keyframes ambientMove{
+    0%{
+        transform:translate(-25%,10%) scale(.85);
+    }
+
+    50%{
+        transform:translate(80%,35%) scale(1.15);
+    }
+
+    100%{
+        transform:translate(130%,70%) scale(.9);
+    }
+}
+
+
+/* particles */
+
+.particles{
+    position:absolute;
+    inset:0;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 12px rgba(213,173,79,.8);
+    opacity:.35;
+    animation:particleFloat linear infinite;
+}
+
+.particle:nth-child(1){
+    left:7%;
+    top:20%;
+    animation-duration:12s;
+}
+
+.particle:nth-child(2){
+    left:18%;
+    top:72%;
+    animation-duration:16s;
+    animation-delay:-4s;
+}
+
+.particle:nth-child(3){
+    left:34%;
+    top:38%;
+    animation-duration:14s;
+    animation-delay:-8s;
+}
+
+.particle:nth-child(4){
+    left:47%;
+    top:83%;
+    animation-duration:18s;
+    animation-delay:-3s;
+}
+
+.particle:nth-child(5){
+    left:62%;
+    top:24%;
+    animation-duration:15s;
+    animation-delay:-7s;
+}
+
+.particle:nth-child(6){
+    left:76%;
+    top:65%;
+    animation-duration:19s;
+    animation-delay:-2s;
+}
+
+.particle:nth-child(7){
+    left:89%;
+    top:32%;
+    animation-duration:13s;
+    animation-delay:-5s;
+}
+
+.particle:nth-child(8){
+    left:94%;
+    top:80%;
+    animation-duration:17s;
+    animation-delay:-10s;
+}
+
+.particle:nth-child(9){
+    left:53%;
+    top:54%;
+    animation-duration:21s;
+    animation-delay:-4s;
+}
+
+.particle:nth-child(10){
+    left:27%;
+    top:14%;
+    animation-duration:20s;
+    animation-delay:-9s;
+}
+
+@keyframes particleFloat{
+    0%{
+        transform:translateY(60px) scale(.5);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.45;
+    }
+
+    80%{
+        opacity:.45;
+    }
+
+    100%{
+        transform:translateY(-140px) scale(1.3);
+        opacity:0;
+    }
+}
+
+
+/* =====================================================
+   NAV
 ===================================================== */
 
 nav{
@@ -116,19 +389,26 @@ nav{
     height:68px;
     margin:auto;
     padding:0 13px 0 18px;
+
     border:1px solid rgba(255,255,255,.10);
     border-radius:20px;
-    background:rgba(8,9,10,.72);
+
+    background:rgba(8,9,10,.74);
     backdrop-filter:blur(22px);
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     transition:.3s;
-    box-shadow:0 20px 60px rgba(0,0,0,.18);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.20),
+        inset 0 1px 0 rgba(255,255,255,.025);
 }
 
 nav.scrolled .nav{
-    background:rgba(8,9,10,.94);
+    background:rgba(8,9,10,.95);
     border-color:rgba(213,173,79,.20);
 }
 
@@ -136,6 +416,7 @@ nav.scrolled .nav{
     display:flex;
     align-items:center;
     gap:11px;
+
     font-family:"Manrope",sans-serif;
     font-weight:800;
     font-size:13px;
@@ -152,6 +433,7 @@ nav.scrolled .nav{
     display:flex;
     align-items:center;
     gap:27px;
+
     color:#a4a8ad;
     font-size:13px;
 }
@@ -167,8 +449,10 @@ nav.scrolled .nav{
 .apply-nav{
     background:var(--white);
     color:#0a0b0c!important;
+
     padding:11px 18px;
     border-radius:11px;
+
     font-weight:700;
 }
 
@@ -178,65 +462,74 @@ nav.scrolled .nav{
 ===================================================== */
 
 .hero{
-    min-height:100vh;
-    padding:145px 0 75px;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
+    padding:145px 0 72px;
     position:relative;
+    overflow:hidden;
 }
 
-.hero-glow{
+.hero:after{
+    content:"";
     position:absolute;
-    width:700px;
-    height:700px;
-    right:-120px;
+    width:600px;
+    height:600px;
+    right:-140px;
     top:40px;
+
     border-radius:50%;
-    background:radial-gradient(circle,rgba(213,173,79,.12),transparent 67%);
-    animation:breathe 7s ease-in-out infinite;
-}
 
-@keyframes breathe{
-    0%,100%{
-        transform:scale(.92);
-        opacity:.6;
-    }
+    background:
+        radial-gradient(
+            circle,
+            rgba(213,173,79,.10),
+            transparent 68%
+        );
 
-    50%{
-        transform:scale(1.08);
-        opacity:1;
-    }
+    filter:blur(20px);
+    pointer-events:none;
 }
 
 .hero-grid{
     display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:65px;
+    grid-template-columns:1.12fr .88fr;
+    gap:55px;
     align-items:center;
+
+    position:relative;
+    z-index:2;
 }
 
 .badge{
     display:inline-flex;
     align-items:center;
     gap:9px;
+
     padding:8px 13px;
+
     border:1px solid rgba(213,173,79,.24);
     background:rgba(213,173,79,.06);
+
     border-radius:100px;
+
     color:#d8c28b;
+
     font-size:10px;
     font-weight:800;
     letter-spacing:1.25px;
-    margin-bottom:27px;
+
+    margin-bottom:25px;
 }
 
 .pulse-dot{
     width:7px;
     height:7px;
+
     border-radius:50%;
+
     background:var(--gold);
-    box-shadow:0 0 13px var(--gold);
+
+    box-shadow:
+        0 0 13px var(--gold);
+
     animation:pulse 1.7s infinite;
 }
 
@@ -254,44 +547,102 @@ nav.scrolled .nav{
 
 .hero h1{
     font-family:"Manrope",sans-serif;
-    font-size:clamp(58px,7vw,96px);
+
+    font-size:clamp(58px,6.2vw,88px);
+
+    font-weight:700;
     line-height:.91;
+
     letter-spacing:-5px;
 }
 
+
+/* UPDATED FROM ZERO COLOR */
+
 .hero h1 span{
-    color:#666b71;
+    background:
+        linear-gradient(
+            90deg,
+            #f5f3ed 0%,
+            #e4d4aa 45%,
+            #d5ad4f 100%
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+    color:transparent;
 }
+
 
 .hero-statement{
     font-family:"Manrope",sans-serif;
-    font-size:clamp(22px,2.2vw,30px);
-    line-height:1.25;
+
+    font-size:clamp(20px,2vw,27px);
+    line-height:1.28;
+
     font-weight:600;
-    margin-top:31px;
-    max-width:680px;
+
+    margin-top:27px;
+
+    max-width:630px;
 }
 
 .hero-copy{
     color:var(--muted);
+
     font-size:15px;
-    max-width:650px;
-    margin-top:17px;
+    line-height:1.65;
+
+    max-width:680px;
+
+    margin-top:14px;
+}
+
+.market-focus{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    margin-top:18px;
+
+    color:#b0b4b8;
+
+    font-size:11px;
+    font-weight:600;
+}
+
+.market-focus span:first-child{
+    color:#686d73;
+
+    letter-spacing:1px;
+
+    font-size:9px;
+    font-weight:800;
 }
 
 .hero-proof{
     display:flex;
     flex-wrap:wrap;
     gap:9px;
-    margin-top:26px;
+
+    margin-top:24px;
 }
 
 .proof-pill{
     padding:8px 13px;
+
     border:1px solid var(--line);
-    background:rgba(255,255,255,.02);
+
+    background:rgba(12,14,16,.55);
+
+    backdrop-filter:blur(8px);
+
     border-radius:100px;
-    color:#b0b4b8;
+
+    color:#b6b9bd;
+
     font-size:10px;
     letter-spacing:.7px;
 }
@@ -300,19 +651,25 @@ nav.scrolled .nav{
     display:flex;
     gap:12px;
     flex-wrap:wrap;
-    margin-top:34px;
+
+    margin-top:30px;
 }
 
 .btn{
     display:inline-flex;
     align-items:center;
     justify-content:center;
+
     gap:8px;
+
     padding:15px 22px;
+
     border-radius:12px;
+
     font-size:12px;
     letter-spacing:.6px;
     font-weight:800;
+
     transition:.3s cubic-bezier(.2,.8,.2,1);
 }
 
@@ -323,16 +680,22 @@ nav.scrolled .nav{
 
 .btn-primary:hover{
     transform:translateY(-3px);
-    box-shadow:0 16px 35px rgba(255,255,255,.11);
+
+    box-shadow:
+        0 16px 35px rgba(255,255,255,.11);
 }
 
 .btn-secondary{
     border:1px solid var(--line);
-    background:rgba(255,255,255,.025);
+
+    background:rgba(10,12,14,.58);
+
+    backdrop-filter:blur(8px);
 }
 
 .btn-secondary:hover{
     transform:translateY(-3px);
+
     border-color:rgba(213,173,79,.38);
 }
 
@@ -342,30 +705,43 @@ nav.scrolled .nav{
 ===================================================== */
 
 .hero-visual{
-    height:500px;
+    height:440px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     position:relative;
 }
 
 .logo-orbit{
-    width:420px;
-    height:420px;
+    width:390px;
+    height:390px;
+
     border:1px solid rgba(213,173,79,.17);
+
     border-radius:50%;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     position:relative;
+
     animation:floatLogo 5s ease-in-out infinite;
+
+    box-shadow:
+        0 0 90px rgba(213,173,79,.035);
 }
 
 .logo-orbit:before,
 .logo-orbit:after{
     content:"";
+
     position:absolute;
+
     border-radius:50%;
+
     border:1px solid rgba(255,255,255,.05);
 }
 
@@ -378,10 +754,15 @@ nav.scrolled .nav{
 }
 
 .logo-orbit img{
-    width:285px;
+    width:270px;
+
     position:relative;
+
     z-index:2;
-    filter:drop-shadow(0 30px 45px #000);
+
+    filter:
+        drop-shadow(0 30px 45px #000)
+        drop-shadow(0 0 18px rgba(213,173,79,.08));
 }
 
 @keyframes floatLogo{
@@ -390,27 +771,37 @@ nav.scrolled .nav{
     }
 
     50%{
-        transform:translateY(-14px);
+        transform:translateY(-12px);
     }
 }
 
 .orbit-track{
     position:absolute;
+
     inset:-2px;
+
     border-radius:50%;
+
     animation:rotate 15s linear infinite;
 }
 
 .orbit-track:after{
     content:"";
+
     position:absolute;
+
     top:42px;
     right:46px;
+
     width:10px;
     height:10px;
+
     border-radius:50%;
+
     background:var(--gold);
-    box-shadow:0 0 24px var(--gold);
+
+    box-shadow:
+        0 0 24px var(--gold);
 }
 
 @keyframes rotate{
@@ -421,17 +812,26 @@ nav.scrolled .nav{
 
 .float-card{
     position:absolute;
+
     padding:13px 16px;
+
     border:1px solid var(--line);
+
     background:rgba(13,15,17,.82);
+
     backdrop-filter:blur(15px);
+
     border-radius:14px;
-    box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.35);
 }
 
 .float-card small{
     display:block;
+
     color:#737980;
+
     font-size:9px;
     letter-spacing:1px;
 }
@@ -442,228 +842,526 @@ nav.scrolled .nav{
 
 .fc-one{
     left:0;
-    top:110px;
+    top:100px;
 }
 
 .fc-two{
     right:-10px;
-    bottom:105px;
+    bottom:95px;
 }
 
 
 /* =====================================================
-   GENERAL TYPOGRAPHY
+   TYPOGRAPHY
 ===================================================== */
 
 .label{
     color:var(--gold);
+
     font-size:10px;
     letter-spacing:3px;
     font-weight:800;
-    margin-bottom:17px;
+
+    margin-bottom:15px;
 }
 
 .title{
     font-family:"Manrope",sans-serif;
+
     font-size:clamp(42px,5vw,70px);
+
+    font-weight:700;
+
     line-height:1.02;
+
     letter-spacing:-3px;
 }
 
 .copy{
     color:var(--muted);
+
     max-width:700px;
-    margin-top:20px;
+
+    margin-top:17px;
+
     font-size:15px;
+    line-height:1.65;
 }
 
 
 /* =====================================================
-   HOW IT WORKS
+   JOURNEY
 ===================================================== */
 
 .journey{
-    padding-top:80px;
-    padding-bottom:90px;
+    padding:70px 0 75px;
 }
 
-.journey-intro{
+.journey-head{
+    text-align:center;
+
     max-width:850px;
+
+    margin:0 auto 42px;
 }
 
-.path{
-    margin-top:58px;
-    position:relative;
+.journey-head .copy{
+    margin-left:auto;
+    margin-right:auto;
 }
 
-.path-line{
-    position:absolute;
-    left:0;
-    right:0;
-    top:24px;
-    height:1px;
-    background:rgba(255,255,255,.08);
-    overflow:hidden;
-}
-
-.path-line-fill{
-    width:0;
-    height:100%;
-    background:linear-gradient(
-        90deg,
-        var(--gold),
-        rgba(213,173,79,.15)
-    );
-    transition:width 2s cubic-bezier(.2,.8,.2,1);
-}
-
-.path.visible .path-line-fill{
-    width:100%;
-}
-
-.path-grid{
+.journey-grid{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:25px;
-    position:relative;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
 }
 
-.path-step{
+.journey-card{
+    min-height:365px;
+
+    padding:27px;
+
+    border-radius:24px;
+
+    border:1px solid rgba(255,255,255,.09);
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(213,173,79,.07),
+            transparent 42%
+        ),
+        rgba(10,12,14,.82);
+
+    backdrop-filter:blur(12px);
+
     position:relative;
+
+    overflow:hidden;
+
+    transition:
+        transform .4s cubic-bezier(.2,.8,.2,1),
+        border-color .4s,
+        box-shadow .4s;
 }
 
-.path-dot{
-    width:49px;
-    height:49px;
+.journey-card:hover{
+    transform:translateY(-7px);
+
+    border-color:rgba(213,173,79,.35);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.35),
+        0 0 35px rgba(213,173,79,.05);
+}
+
+.journey-card:before{
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border:1px solid rgba(213,173,79,.07);
+
     border-radius:50%;
-    background:#090b0c;
-    border:1px solid rgba(213,173,79,.30);
+
+    right:-100px;
+    top:-100px;
+}
+
+.step-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:20px;
+}
+
+.step-circle{
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(213,173,79,.55);
+
+    color:var(--gold);
+
     display:flex;
     align-items:center;
     justify-content:center;
-    color:var(--gold);
-    font-size:10px;
-    font-weight:700;
-    margin-bottom:28px;
-    transition:.3s;
-}
 
-.path-step:hover .path-dot{
-    background:var(--gold);
-    color:#090909;
-    box-shadow:0 0 30px rgba(213,173,79,.18);
-}
-
-.path-step small{
-    color:#666b71;
-    font-size:9px;
-    letter-spacing:1.5px;
-}
-
-.path-step h3{
     font-family:"Manrope",sans-serif;
-    font-size:18px;
-    margin-top:7px;
+
+    font-weight:800;
+    font-size:14px;
+
+    box-shadow:
+        inset 0 0 15px rgba(213,173,79,.08),
+        0 0 20px rgba(213,173,79,.06);
 }
 
-.path-step p{
+.step-word{
+    color:#696e74;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:1.8px;
+}
+
+.step-picture{
+    height:100px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:19px;
+}
+
+.step-picture svg{
+    width:92px;
+    height:92px;
+
+    overflow:visible;
+}
+
+.icon-line{
+    fill:none;
+
+    stroke:#92989e;
+
+    stroke-width:1.6;
+
+    stroke-linecap:round;
+
+    stroke-linejoin:round;
+}
+
+.icon-gold{
+    fill:none;
+
+    stroke:var(--gold);
+
+    stroke-width:1.8;
+
+    stroke-linecap:round;
+
+    stroke-linejoin:round;
+}
+
+.icon-fill{
+    fill:rgba(213,173,79,.10);
+
+    stroke:var(--gold);
+
+    stroke-width:1.6;
+}
+
+.journey-card h3{
+    font-family:"Manrope",sans-serif;
+
+    font-size:20px;
+
+    line-height:1.25;
+
+    font-weight:700;
+}
+
+.journey-card p{
     color:var(--muted);
-    font-size:12px;
+
+    font-size:13px;
+
+    line-height:1.65;
+
     margin-top:9px;
-    max-width:190px;
+}
+
+.step-tag{
+    display:inline-block;
+
+    margin-top:18px;
+
+    padding:7px 11px;
+
+    border:1px solid rgba(213,173,79,.24);
+
+    border-radius:100px;
+
+    color:#d4bd83;
+
+    font-size:8px;
+
+    font-weight:800;
+
+    letter-spacing:1.1px;
+}
+
+
+/* ICON ANIMATIONS */
+
+.apply-paper{
+    animation:paperFloat 3s ease-in-out infinite;
+}
+
+@keyframes paperFloat{
+    50%{
+        transform:translateY(-5px);
+    }
+}
+
+.learning-cap{
+    animation:capFloat 3s ease-in-out infinite;
+}
+
+@keyframes capFloat{
+    50%{
+        transform:translateY(-5px) rotate(-2deg);
+    }
+}
+
+.demo-chart{
+    stroke-dasharray:120;
+    stroke-dashoffset:120;
+
+    animation:chartDraw 3.5s ease-in-out infinite;
+}
+
+@keyframes chartDraw{
+    0%{
+        stroke-dashoffset:120;
+        opacity:.2;
+    }
+
+    45%,80%{
+        stroke-dashoffset:0;
+        opacity:1;
+    }
+
+    100%{
+        stroke-dashoffset:0;
+        opacity:.25;
+    }
+}
+
+.profit-arrow{
+    animation:profitMove 2.6s ease-in-out infinite;
+}
+
+@keyframes profitMove{
+    50%{
+        transform:translate(4px,-5px);
+    }
+}
+
+.group-center{
+    animation:groupPulse 2.4s ease-in-out infinite;
+
+    transform-origin:center;
+}
+
+@keyframes groupPulse{
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+.trade-candle-1{
+    animation:candleA 2.4s ease-in-out infinite;
+}
+
+.trade-candle-2{
+    animation:candleA 2.4s .3s ease-in-out infinite;
+}
+
+.trade-candle-3{
+    animation:candleA 2.4s .6s ease-in-out infinite;
+}
+
+@keyframes candleA{
+    50%{
+        transform:translateY(-4px);
+    }
+}
+
+
+/* JOURNEY CTA */
+
+.journey-cta{
+    margin-top:20px;
+
+    padding:28px 32px;
+
+    border:1px solid rgba(213,173,79,.18);
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(213,173,79,.06),
+            transparent 45%
+        ),
+        rgba(10,12,14,.86);
+
+    backdrop-filter:blur(12px);
+}
+
+.journey-cta h3{
+    font-family:"Manrope",sans-serif;
+
+    font-size:22px;
+
+    font-weight:700;
+}
+
+.journey-cta p{
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-top:4px;
 }
 
 
 /* =====================================================
-   LIVE TRADING
+   LIVE
 ===================================================== */
 
 .live{
-    padding:105px 0;
+    padding:75px 0;
+
     background:
         linear-gradient(
             180deg,
             transparent,
-            #0c0e10 13%,
-            #0c0e10 87%,
+            rgba(12,14,16,.91) 10%,
+            rgba(12,14,16,.91) 90%,
             transparent
         );
 }
 
 .live-grid{
     display:grid;
+
     grid-template-columns:.82fr 1.18fr;
-    gap:70px;
+
+    gap:65px;
+
     align-items:center;
 }
 
 .live-heading-highlight{
     position:relative;
+
     display:inline-block;
 }
 
 .live-heading-highlight:after{
     content:"";
+
     position:absolute;
+
     height:2px;
+
     left:0;
     right:0;
     bottom:-6px;
-    background:linear-gradient(
-        90deg,
-        var(--gold),
-        transparent
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold),
+            transparent
+        );
 }
 
 .live-list{
-    margin-top:32px;
+    margin-top:27px;
 }
 
 .live-row{
     display:grid;
+
     grid-template-columns:42px 1fr;
+
     gap:15px;
-    padding:16px 0;
+
+    padding:14px 0;
+
     border-bottom:1px solid var(--line);
 }
 
 .live-num{
     width:34px;
     height:34px;
+
     border-radius:10px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     background:rgba(213,173,79,.07);
+
     border:1px solid rgba(213,173,79,.18);
+
     color:var(--gold);
+
     font-size:10px;
 }
 
 .live-row h4{
     font-family:"Manrope",sans-serif;
+
     font-size:15px;
+
+    font-weight:700;
 }
 
 .live-row p{
     color:var(--muted);
+
     font-size:12px;
+
+    line-height:1.6;
+
     margin-top:3px;
 }
 
 .community-image{
     position:relative;
+
     overflow:hidden;
+
     border-radius:27px;
+
     border:1px solid var(--line);
-    box-shadow:0 40px 90px rgba(0,0,0,.42);
+
+    box-shadow:
+        0 40px 90px rgba(0,0,0,.42);
 }
 
 .community-image img{
     display:block;
+
     width:100%;
-    transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
+
+    transition:
+        transform 1.2s cubic-bezier(.2,.8,.2,1);
 }
 
 .community-image:hover img{
@@ -672,50 +1370,66 @@ nav.scrolled .nav{
 
 .community-image:after{
     content:"";
+
     position:absolute;
+
     inset:0;
+
     background:
         linear-gradient(
             to top,
             rgba(5,6,7,.55),
             transparent 55%
         );
+
     pointer-events:none;
 }
 
 .live-indicator{
     position:absolute;
+
     z-index:3;
+
     left:21px;
     bottom:21px;
+
     display:flex;
     align-items:center;
+
     gap:8px;
+
     padding:9px 13px;
+
     border-radius:100px;
+
     border:1px solid rgba(255,255,255,.15);
+
     background:rgba(6,7,8,.78);
+
     backdrop-filter:blur(15px);
+
     font-size:10px;
+
     letter-spacing:1px;
+
     font-weight:800;
 }
 
 .live-dot{
     width:7px;
     height:7px;
+
     border-radius:50%;
+
     background:#e85c5c;
-    box-shadow:0 0 12px #e85c5c;
+
+    box-shadow:
+        0 0 12px #e85c5c;
+
     animation:livePulse 1.3s infinite;
 }
 
 @keyframes livePulse{
-    0%,100%{
-        opacity:1;
-        transform:scale(1);
-    }
-
     50%{
         opacity:.3;
         transform:scale(.75);
@@ -724,8 +1438,12 @@ nav.scrolled .nav{
 
 
 /* =====================================================
-   WHAT YOU LEARN
+   LEARN
 ===================================================== */
+
+#learn{
+    padding:70px 0;
+}
 
 .learn-head{
     max-width:900px;
@@ -733,50 +1451,77 @@ nav.scrolled .nav{
 
 .learn-grid{
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:14px;
-    margin-top:50px;
+
+    margin-top:38px;
 }
 
 .learn-card{
     border:1px solid var(--line);
-    background:rgba(255,255,255,.02);
+
+    background:rgba(10,12,14,.75);
+
+    backdrop-filter:blur(12px);
+
     border-radius:18px;
+
     padding:27px;
-    min-height:185px;
+
+    min-height:180px;
+
     transition:.35s;
 }
 
 .learn-card:hover{
     transform:translateY(-5px);
-    background:rgba(255,255,255,.035);
+
+    background:rgba(14,16,18,.88);
+
     border-color:rgba(213,173,79,.26);
 }
 
 .learn-icon{
     width:38px;
     height:38px;
+
     border-radius:10px;
+
     border:1px solid rgba(213,173,79,.18);
+
     background:rgba(213,173,79,.06);
+
     color:var(--gold);
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-family:"Manrope",sans-serif;
+
     font-size:11px;
-    margin-bottom:23px;
+
+    margin-bottom:20px;
 }
 
 .learn-card h3{
     font-family:"Manrope",sans-serif;
+
     font-size:18px;
+
+    font-weight:700;
 }
 
 .learn-card p{
     color:var(--muted);
+
     font-size:12px;
-    margin-top:8px;
+
+    line-height:1.6;
+
+    margin-top:7px;
 }
 
 
@@ -785,165 +1530,212 @@ nav.scrolled .nav{
 ===================================================== */
 
 .community{
-    padding:65px 0 75px;
+    padding:52px 0 58px;
 }
 
 .community-banner{
     border:1px solid var(--line);
+
     border-radius:30px;
-    padding:52px 60px;
+
+    padding:48px 55px;
+
     position:relative;
+
     overflow:hidden;
+
     background:
         radial-gradient(
             circle at 100% 0%,
             rgba(213,173,79,.11),
             transparent 40%
         ),
-        #0c0e10;
-}
+        rgba(12,14,16,.89);
 
-.community-banner:after{
-    content:"";
-    position:absolute;
-    width:340px;
-    height:340px;
-    right:-170px;
-    bottom:-220px;
-    border:1px solid rgba(213,173,79,.12);
-    border-radius:50%;
+    backdrop-filter:blur(15px);
 }
 
 .community-banner h2{
     font-family:"Manrope",sans-serif;
+
     font-size:clamp(42px,5vw,64px);
+
+    font-weight:700;
+
     letter-spacing:-3px;
+
     line-height:1;
 }
 
 .community-banner p{
     color:var(--muted);
+
     max-width:650px;
-    margin-top:18px;
+
+    margin-top:16px;
+
     font-size:14px;
+
+    line-height:1.65;
 }
 
 .community-points{
     display:flex;
     flex-wrap:wrap;
+
     gap:9px;
-    margin-top:27px;
+
+    margin-top:23px;
 }
 
 .community-point{
     padding:8px 13px;
-    border-radius:100px;
-    border:1px solid var(--line);
-    font-size:10px;
-    color:#c3c6c9;
-    transition:.25s;
-}
 
-.community-point:hover{
-    border-color:rgba(213,173,79,.35);
-    color:white;
+    border-radius:100px;
+
+    border:1px solid var(--line);
+
+    font-size:10px;
+
+    color:#c3c6c9;
 }
 
 
 /* =====================================================
-   100 YOUNG TRADERS
+   ADMISSION
 ===================================================== */
 
 .admission{
-    padding:90px 0 100px;
+    padding:70px 0 75px;
+
     overflow:hidden;
 }
 
 .admission-grid{
     display:grid;
+
     grid-template-columns:.9fr 1.1fr;
+
     gap:80px;
+
     align-items:center;
 }
 
 .hundred{
     font-family:"Manrope",sans-serif;
+
     font-weight:800;
+
     font-size:clamp(110px,15vw,200px);
+
     line-height:.8;
+
     letter-spacing:-13px;
-    background:linear-gradient(
-        135deg,
-        #f6f4ef,
-        #8c7131
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #f6f4ef,
+            #8c7131
+        );
+
     -webkit-background-clip:text;
+
     color:transparent;
-    margin-top:35px;
+
+    margin-top:30px;
 }
 
 .hundred-label{
-    margin-top:28px;
+    margin-top:24px;
+
     color:var(--muted);
+
     letter-spacing:3px;
+
     font-size:10px;
 }
 
 .admission-card{
     border:1px solid rgba(213,173,79,.18);
+
     border-radius:28px;
-    padding:48px;
+
+    padding:45px;
+
     background:
         radial-gradient(
             circle at 100% 0%,
             rgba(213,173,79,.10),
             transparent 38%
         ),
-        #0d0f11;
+        rgba(13,15,17,.88);
+
+    backdrop-filter:blur(15px);
 }
 
 .open{
     display:flex;
     align-items:center;
+
     gap:9px;
+
     color:#d7c28c;
+
     font-size:10px;
+
     font-weight:800;
+
     letter-spacing:2px;
-    margin-bottom:20px;
+
+    margin-bottom:18px;
 }
 
 .admission-card h3{
     font-family:"Manrope",sans-serif;
+
     font-size:36px;
+
+    font-weight:700;
+
     letter-spacing:-1.5px;
 }
 
 .admission-card > p{
     color:var(--muted);
+
     font-size:14px;
-    margin-top:14px;
+
+    line-height:1.65;
+
+    margin-top:12px;
 }
 
 .admission-details{
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
-    margin:30px 0;
+
+    margin:27px 0;
+
     border-top:1px solid var(--line);
+
     border-bottom:1px solid var(--line);
 }
 
 .admission-detail{
-    padding:18px 13px 18px 0;
+    padding:17px 13px 17px 0;
 }
 
 .admission-detail strong{
     display:block;
+
     font-size:13px;
 }
 
 .admission-detail span{
     color:var(--muted);
+
     font-size:10px;
 }
 
@@ -956,12 +1748,16 @@ nav.scrolled .nav{
    FAQ
 ===================================================== */
 
+#faq{
+    padding:70px 0;
+}
+
 .faq-wrap{
     max-width:850px;
 }
 
 .faq-list{
-    margin-top:40px;
+    margin-top:34px;
 }
 
 .faq-item{
@@ -970,51 +1766,77 @@ nav.scrolled .nav{
 
 .faq-question{
     width:100%;
+
     border:0;
+
     background:none;
+
     color:white;
-    padding:22px 0;
+
+    padding:20px 0;
+
     cursor:pointer;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     gap:20px;
+
     text-align:left;
+
     font-family:"Manrope",sans-serif;
+
     font-size:16px;
+
+    font-weight:600;
 }
 
 .faq-plus{
     flex:0 0 30px;
+
     width:30px;
     height:30px;
+
     border-radius:50%;
+
     border:1px solid var(--line);
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     transition:.3s;
 }
 
 .faq-answer{
     max-height:0;
+
     opacity:0;
+
     overflow:hidden;
+
     color:var(--muted);
+
     font-size:13px;
+
+    line-height:1.7;
+
     transition:.4s;
 }
 
 .faq-item.active .faq-answer{
-    max-height:180px;
+    max-height:220px;
+
     opacity:1;
-    padding-bottom:24px;
+
+    padding-bottom:22px;
 }
 
 .faq-item.active .faq-plus{
     transform:rotate(45deg);
+
     color:var(--gold);
-    border-color:rgba(213,173,79,.3);
 }
 
 
@@ -1024,24 +1846,35 @@ nav.scrolled .nav{
 
 .final{
     text-align:center;
-    padding:75px 0 100px;
+
+    padding:65px 0 75px;
 }
 
 .final img{
     width:88px;
-    margin-bottom:24px;
+
+    margin-bottom:21px;
 }
 
 .final h2{
     font-family:"Manrope",sans-serif;
+
     font-size:clamp(50px,7vw,90px);
+
+    font-weight:700;
+
     letter-spacing:-5px;
+
     line-height:.94;
 }
 
 .final p{
     color:var(--muted);
-    margin:24px auto 30px;
+
+    line-height:1.65;
+
+    margin:20px auto 27px;
+
     max-width:650px;
 }
 
@@ -1052,22 +1885,34 @@ nav.scrolled .nav{
 
 footer{
     border-top:1px solid var(--line);
-    padding:45px 0;
+
+    padding:38px 0;
+
+    background:rgba(6,7,8,.72);
+
+    backdrop-filter:blur(12px);
+
     color:#73787e;
+
     font-size:11px;
 }
 
 .footer{
     display:grid;
+
     grid-template-columns:.4fr 1fr;
+
     gap:60px;
 }
 
 .footer-brand{
     display:flex;
     align-items:center;
+
     gap:11px;
+
     color:#d3d4d5;
+
     font-weight:700;
 }
 
@@ -1081,12 +1926,14 @@ footer{
 
 
 /* =====================================================
-   SCROLL ANIMATIONS
+   REVEAL
 ===================================================== */
 
 .reveal{
     opacity:0;
+
     transform:translateY(26px);
+
     transition:
         opacity .75s cubic-bezier(.2,.8,.2,1),
         transform .75s cubic-bezier(.2,.8,.2,1);
@@ -1094,6 +1941,7 @@ footer{
 
 .reveal.visible{
     opacity:1;
+
     transform:none;
 }
 
@@ -1109,9 +1957,17 @@ footer{
     transition-delay:.24s;
 }
 
+.delay4{
+    transition-delay:.32s;
+}
+
+.delay5{
+    transition-delay:.40s;
+}
+
 
 /* =====================================================
-   MOBILE
+   TABLET
 ===================================================== */
 
 @media(max-width:950px){
@@ -1124,7 +1980,7 @@ footer{
 
     .hero-visual{
         order:-1;
-        height:370px;
+        height:350px;
     }
 
     .logo-orbit{
@@ -1136,13 +1992,8 @@ footer{
         width:205px;
     }
 
-    .path-grid{
+    .journey-grid{
         grid-template-columns:1fr 1fr;
-        gap:35px;
-    }
-
-    .path-line{
-        display:none;
     }
 
     .learn-grid{
@@ -1156,66 +2007,176 @@ footer{
 }
 
 
+/* =====================================================
+   MOBILE
+===================================================== */
+
 @media(max-width:650px){
 
+    .container{
+        width:90%;
+    }
+
     section{
-        padding:70px 0;
+        padding:55px 0;
+    }
+
+    .tech-grid{
+        background-size:48px 48px;
+        opacity:.25;
+    }
+
+    .wave{
+        opacity:.12;
+    }
+
+    .nav{
+        height:62px;
+
+        padding:0 9px 0 12px;
+    }
+
+    .brand{
+        font-size:10px;
+
+        letter-spacing:.5px;
+    }
+
+    .brand img{
+        width:36px;
+        height:36px;
+    }
+
+    .apply-nav{
+        padding:9px 12px;
+
+        font-size:11px;
     }
 
     .hero{
-        padding-top:105px;
-        min-height:auto;
+        padding:105px 0 52px;
+    }
+
+    .hero-grid{
+        gap:24px;
     }
 
     .hero h1{
-        font-size:clamp(49px,15vw,68px);
+        font-size:clamp(47px,14vw,64px);
+
         letter-spacing:-3px;
     }
 
     .hero-statement{
-        margin-top:24px;
+        margin-top:22px;
+
+        font-size:20px;
+    }
+
+    .hero-copy{
+        font-size:14px;
+    }
+
+    .market-focus{
+        flex-wrap:wrap;
     }
 
     .hero-visual{
-        height:300px;
+        height:280px;
     }
 
     .logo-orbit{
-        width:235px;
-        height:235px;
+        width:230px;
+        height:230px;
     }
 
     .logo-orbit img{
-        width:160px;
+        width:158px;
     }
 
     .fc-one{
         left:-3%;
-        top:35px;
+        top:30px;
     }
 
     .fc-two{
         right:-3%;
-        bottom:30px;
+        bottom:25px;
     }
 
-    .path-grid,
+    .journey{
+        padding:55px 0 58px;
+    }
+
+    .journey-head{
+        text-align:left;
+
+        margin-bottom:32px;
+    }
+
+    .journey-grid{
+        grid-template-columns:1fr;
+
+        gap:13px;
+    }
+
+    .journey-card{
+        min-height:0;
+
+        padding:23px;
+    }
+
+    .step-picture{
+        height:85px;
+
+        justify-content:flex-start;
+    }
+
+    .step-picture svg{
+        width:78px;
+        height:78px;
+    }
+
+    .journey-cta{
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        padding:25px;
+    }
+
+    .journey-cta .btn{
+        width:100%;
+    }
+
     .learn-grid{
         grid-template-columns:1fr;
     }
 
-    .path-step{
-        border-bottom:1px solid var(--line);
-        padding-bottom:27px;
+    .live{
+        padding:58px 0;
+    }
+
+    #learn{
+        padding:55px 0;
+    }
+
+    .community{
+        padding:40px 0 48px;
     }
 
     .community-banner{
-        padding:38px 25px;
+        padding:35px 24px;
+
         border-radius:22px;
     }
 
+    .admission{
+        padding:55px 0;
+    }
+
     .admission-card{
-        padding:34px 24px;
+        padding:32px 23px;
     }
 
     .admission-details{
@@ -1234,8 +2195,17 @@ footer{
         letter-spacing:-8px;
     }
 
+    #faq{
+        padding:55px 0;
+    }
+
+    .final{
+        padding:55px 0 62px;
+    }
+
     .footer{
         grid-template-columns:1fr;
+
         gap:25px;
     }
 
@@ -1245,6 +2215,8 @@ footer{
 
 }
 
+
+/* accessibility */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -1261,11 +2233,45 @@ footer{
     }
 
 }
-
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     ANIMATED BACKGROUND
+===================================================== -->
+
+<div class="tech-background">
+
+    <div class="tech-grid"></div>
+
+    <div class="wave wave-one"></div>
+    <div class="wave wave-two"></div>
+    <div class="wave wave-three"></div>
+
+    <div class="data-lines"></div>
+
+    <div class="ambient-glow"></div>
+
+    <div class="particles">
+
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+
+    </div>
+
+</div>
 
 
 <!-- =====================================================
@@ -1278,36 +2284,21 @@ footer{
 
 <a class="brand" href="#top">
 
-    <img
-    src="logo.png"
-    alt="The Smart Money Room">
+<img src="logo.png" alt="The Smart Money Room">
 
-    <span>
-        THE SMART
-        <span class="gold">MONEY</span>
-        ROOM
-    </span>
+<span>
+THE SMART <span class="gold">MONEY</span> ROOM
+</span>
 
 </a>
 
 
 <div class="navlinks">
 
-<a href="#how">
-How It Works
-</a>
-
-<a href="#live">
-Live Trading
-</a>
-
-<a href="#learn">
-What You Learn
-</a>
-
-<a href="#community">
-Community
-</a>
+<a href="#how">How It Works</a>
+<a href="#live">Live Trading</a>
+<a href="#learn">What You Learn</a>
+<a href="#community">Community</a>
 
 <a
 class="apply-nav"
@@ -1330,8 +2321,6 @@ Apply Now
 
 <header class="hero" id="top">
 
-<div class="hero-glow"></div>
-
 <div class="container hero-grid">
 
 
@@ -1348,48 +2337,60 @@ FREE TRADING EDUCATION · BEGINNER FRIENDLY
 
 <h1>
 
-START FROM
+LEARN
+<br>
+TRADING
 <br>
 
-<span>
-ZERO.
-</span>
+<span>FROM ZERO.</span>
 
 </h1>
 
 
 <div class="hero-statement">
 
-Learn trading from scratch — free.
+Learn the basics. Watch live trading.
+<br>
+Understand the market.
 
 </div>
 
 
 <p class="hero-copy">
 
-Join live market analysis and trading sessions,
-practice what you learn, ask questions and build
-the skills to understand the market for yourself.
+Learn Gold, USOIL and Bitcoin from the basics,
+watch live market analysis and trading sessions,
+ask questions, practice on demo and develop the
+skills to understand trades for yourself.
 
 </p>
+
+
+<div class="market-focus">
+
+<span>FOCUS MARKETS</span>
+
+GOLD (XAUUSD) · USOIL · BITCOIN (BTC)
+
+</div>
 
 
 <div class="hero-proof">
 
 <span class="proof-pill">
-NO TUITION
+LIVE TRADING SESSIONS
 </span>
 
 <span class="proof-pill">
-LIVE TRADING
+BEGINNER LESSONS
 </span>
 
 <span class="proof-pill">
-BEGINNER FRIENDLY
+MARKET ANALYSIS
 </span>
 
 <span class="proof-pill">
-GOLD · USOIL · BTC
+$0 TO JOIN
 </span>
 
 </div>
@@ -1429,7 +2430,7 @@ SEE HOW IT WORKS
 
 <img
 src="logo.png"
-alt="The Smart Money Room logo">
+alt="The Smart Money Room">
 
 </div>
 
@@ -1437,7 +2438,7 @@ alt="The Smart Money Room logo">
 <div class="float-card fc-one">
 
 <small>
-LEARNING COST
+MEMBERSHIP
 </small>
 
 <strong class="gold">
@@ -1467,7 +2468,7 @@ GOLD · OIL · BTC
 
 
 <!-- =====================================================
-     HOW IT WORKS
+     JOURNEY
 ===================================================== -->
 
 <section class="journey" id="how">
@@ -1475,22 +2476,17 @@ GOLD · OIL · BTC
 <div class="container">
 
 
-<div class="journey-intro">
+<div class="journey-head">
 
 <div class="label reveal">
-HOW IT WORKS
+YOUR JOURNEY
 </div>
-
 
 <h2 class="title reveal">
 
-From your first chart
-<br>
-
-to
-
+How It
 <span class="gold">
-real market understanding.
+Works.
 </span>
 
 </h2>
@@ -1498,133 +2494,575 @@ real market understanding.
 
 <p class="copy reveal">
 
-You don't need previous trading experience.
-Start with the foundations, see those concepts applied
-to live markets, practice them and gradually develop
-your own trading decision-making.
+A clear learning path from your application
+to understanding live markets — one step at a time.
 
 </p>
 
 </div>
 
 
-<div class="path reveal">
+<div class="journey-grid">
 
-<div class="path-line">
 
-<div class="path-line-fill"></div>
+<!-- STEP 1 -->
+
+<div class="journey-card reveal">
+
+<div class="step-top">
+
+<div class="step-circle">
+1
+</div>
+
+<div class="step-word">
+APPLY
+</div>
 
 </div>
 
 
-<div class="path-grid">
+<div class="step-picture">
 
+<svg viewBox="0 0 100 100" class="apply-paper">
 
-<div class="path-step">
+<rect
+class="icon-line"
+x="20"
+y="12"
+width="50"
+height="70"
+rx="5"/>
 
-<div class="path-dot">
-01
+<line
+class="icon-line"
+x1="31"
+y1="29"
+x2="58"
+y2="29"/>
+
+<line
+class="icon-line"
+x1="31"
+y1="40"
+x2="55"
+y2="40"/>
+
+<line
+class="icon-line"
+x1="31"
+y1="51"
+x2="49"
+y2="51"/>
+
+<circle
+class="icon-fill"
+cx="72"
+cy="62"
+r="10"/>
+
+<path
+class="icon-gold"
+d="M56 88v-8c0-8 7-13 16-13s16 5 16 13v8"/>
+
+</svg>
+
 </div>
 
-<small>
-START
-</small>
 
 <h3>
-Start From Zero
+Apply & We Select
 </h3>
 
+
 <p>
-Learn the basic language of trading and how markets work.
+
+Start by submitting a short application.
+We review applications and select people who
+are serious about learning, participating
+and improving.
+
 </p>
 
+
+<span class="step-tag">
+SUBMIT APPLICATION
+</span>
+
 </div>
 
 
-<div class="path-step">
+<!-- STEP 2 -->
 
-<div class="path-dot">
-02
+<div class="journey-card reveal delay1">
+
+<div class="step-top">
+
+<div class="step-circle">
+2
 </div>
 
-<small>
+<div class="step-word">
 LEARN
-</small>
+</div>
+
+</div>
+
+
+<div class="step-picture">
+
+<svg
+viewBox="0 0 100 100"
+class="learning-cap">
+
+<path
+class="icon-fill"
+d="M12 35l38-20 38 20-38 20-38-20z"/>
+
+<path
+class="icon-line"
+d="M27 45v22c15 12 31 12 46 0V45"/>
+
+<path
+class="icon-gold"
+d="M84 38v27"/>
+
+<circle
+class="icon-fill"
+cx="84"
+cy="70"
+r="4"/>
+
+<path
+class="icon-line"
+d="M26 77h48"/>
+
+<path
+class="icon-line"
+d="M30 84h40"/>
+
+</svg>
+
+</div>
+
 
 <h3>
-Build The Basics
+Start Learning
+</h3>
+
+
+<p>
+
+Begin with beginner-friendly lessons covering
+charts, market structure, entries, stop losses,
+risk management and trading psychology.
+
+</p>
+
+
+<span class="step-tag">
+BUILD THE FOUNDATION
+</span>
+
+</div>
+
+
+<!-- STEP 3 -->
+
+<div class="journey-card reveal delay2">
+
+<div class="step-top">
+
+<div class="step-circle">
+3
+</div>
+
+<div class="step-word">
+DEMO
+</div>
+
+</div>
+
+
+<div class="step-picture">
+
+<svg viewBox="0 0 100 100">
+
+<rect
+class="icon-line"
+x="10"
+y="16"
+width="80"
+height="56"
+rx="6"/>
+
+<line
+class="icon-line"
+x1="35"
+y1="84"
+x2="65"
+y2="84"/>
+
+<line
+class="icon-line"
+x1="50"
+y1="72"
+x2="50"
+y2="84"/>
+
+<polyline
+class="icon-gold demo-chart"
+points="18,58 28,49 37,53 47,36 57,42 68,27 81,33"/>
+
+<circle
+class="icon-fill"
+cx="81"
+cy="33"
+r="3"/>
+
+</svg>
+
+</div>
+
+
+<h3>
+Demo Trading on Live Charts
+</h3>
+
+
+<p>
+
+Put what you learn into practice on a demo
+account while following real market prices
+and live charts. Practice the process without
+risking real money.
+
+</p>
+
+
+<span class="step-tag">
+PRACTICE FIRST
+</span>
+
+</div>
+
+
+<!-- STEP 4 -->
+
+<div class="journey-card reveal delay3">
+
+<div class="step-top">
+
+<div class="step-circle">
+4
+</div>
+
+<div class="step-word">
+BUILD
+</div>
+
+</div>
+
+
+<div class="step-picture">
+
+<svg viewBox="0 0 100 100">
+
+<rect
+class="icon-line"
+x="14"
+y="67"
+width="17"
+height="17"/>
+
+<rect
+class="icon-line"
+x="40"
+y="54"
+width="17"
+height="30"/>
+
+<rect
+class="icon-line"
+x="66"
+y="37"
+width="17"
+height="47"/>
+
+<g class="profit-arrow">
+
+<path
+class="icon-gold"
+d="M14 55c18-3 32-10 43-20 8-7 14-15 21-26"/>
+
+<path
+class="icon-gold"
+d="M67 10h12v12"/>
+
+</g>
+
+</svg>
+
+</div>
+
+
+<h3>
+Build Consistency on Demo
+</h3>
+
+
+<p>
+
+Develop your process and work toward consistent
+demo results. Review both wins and losses,
+improve your discipline and learn to follow
+a trading plan.
+
+</p>
+
+
+<span class="step-tag">
+DEVELOP YOUR SKILLS
+</span>
+
+</div>
+
+
+<!-- STEP 5 -->
+
+<div class="journey-card reveal delay4">
+
+<div class="step-top">
+
+<div class="step-circle">
+5
+</div>
+
+<div class="step-word">
+TOGETHER
+</div>
+
+</div>
+
+
+<div class="step-picture">
+
+<svg viewBox="0 0 100 100">
+
+<circle
+class="icon-line"
+cx="24"
+cy="33"
+r="11"/>
+
+<circle
+class="icon-fill group-center"
+cx="50"
+cy="27"
+r="13"/>
+
+<circle
+class="icon-line"
+cx="77"
+cy="33"
+r="11"/>
+
+<path
+class="icon-line"
+d="M7 72c0-14 7-22 17-22 8 0 13 4 16 10"/>
+
+<path
+class="icon-gold"
+d="M29 78c0-18 8-28 21-28s21 10 21 28"/>
+
+<path
+class="icon-line"
+d="M60 60c3-6 9-10 17-10 10 0 17 8 17 22"/>
+
+</svg>
+
+</div>
+
+
+<h3>
+Trade With the Group
+</h3>
+
+
+<p>
+
+Learn alongside the community rather than
+trading in isolation. Discuss the market,
+share observations and practice staying
+focused on the plan instead of reacting
+to fear or FOMO.
+
+</p>
+
+
+<span class="step-tag">
+LEARN TOGETHER
+</span>
+
+</div>
+
+
+<!-- STEP 6 -->
+
+<div class="journey-card reveal delay5">
+
+<div class="step-top">
+
+<div class="step-circle">
+6
+</div>
+
+<div class="step-word">
+LIVE PROCESS
+</div>
+
+</div>
+
+
+<div class="step-picture">
+
+<svg viewBox="0 0 100 100">
+
+<g class="trade-candle-1">
+
+<line
+class="icon-line"
+x1="22"
+y1="25"
+x2="22"
+y2="70"/>
+
+<rect
+class="icon-fill"
+x="17"
+y="37"
+width="10"
+height="20"
+rx="1"/>
+
+</g>
+
+
+<g class="trade-candle-2">
+
+<line
+class="icon-line"
+x1="42"
+y1="14"
+x2="42"
+y2="62"/>
+
+<rect
+class="icon-fill"
+x="37"
+y="25"
+width="10"
+height="22"
+rx="1"/>
+
+</g>
+
+
+<g class="trade-candle-3">
+
+<line
+class="icon-line"
+x1="62"
+y1="28"
+x2="62"
+y2="77"/>
+
+<rect
+class="icon-fill"
+x="57"
+y="40"
+width="10"
+height="23"
+rx="1"/>
+
+</g>
+
+
+<line
+class="icon-line"
+x1="81"
+y1="19"
+x2="81"
+y2="68"/>
+
+<rect
+class="icon-fill"
+x="76"
+y="30"
+width="10"
+height="20"
+rx="1"/>
+
+<path
+class="icon-gold"
+d="M15 83h70"/>
+
+</svg>
+
+</div>
+
+
+<h3>
+Open, Hold & Close Together
+</h3>
+
+
+<p>
+
+Follow the complete trade process with the
+community: identify an opportunity, plan the
+trade, manage it while it is open and review
+the decision after it is closed.
+
+</p>
+
+
+<span class="step-tag">
+FULL TRADING PROCESS
+</span>
+
+</div>
+
+</div>
+
+
+<div class="journey-cta reveal">
+
+<div>
+
+<h3>
+Ready to start your journey?
 </h3>
 
 <p>
-Understand charts, entries, stop losses, structure and risk.
+
+Apply first. If selected, we'll take you through
+the learning process step by step.
+
 </p>
 
 </div>
 
 
-<div class="path-step">
+<a
+class="btn btn-primary"
+href="https://docs.google.com/forms/d/e/1FAIpQLSdKaR_BqnCoPvZ1PaFnSC8NfL_ul__vPOVEpHr4CvQFrav9cA/viewform?usp=dialog"
+target="_blank"
+rel="noopener">
 
-<div class="path-dot">
-03
-</div>
+APPLY TO JOIN →
 
-<small>
-WATCH
-</small>
-
-<h3>
-See It Live
-</h3>
-
-<p>
-Join live sessions and watch market analysis as price moves.
-</p>
-
-</div>
-
-
-<div class="path-step">
-
-<div class="path-dot">
-04
-</div>
-
-<small>
-PRACTICE
-</small>
-
-<h3>
-Apply It
-</h3>
-
-<p>
-Use demo trading to practice what you're learning.
-</p>
-
-</div>
-
-
-<div class="path-step">
-
-<div class="path-dot">
-05
-</div>
-
-<small>
-GROW
-</small>
-
-<h3>
-Build Independence
-</h3>
-
-<p>
-Work toward understanding and evaluating trades yourself.
-</p>
-
-</div>
-
-</div>
+</a>
 
 </div>
 
@@ -1634,7 +3072,7 @@ Work toward understanding and evaluating trades yourself.
 
 
 <!-- =====================================================
-     LIVE TRADING
+     LIVE
 ===================================================== -->
 
 <section class="live" id="live">
@@ -1645,9 +3083,7 @@ Work toward understanding and evaluating trades yourself.
 <div>
 
 <div class="label reveal">
-
 LIVE TRADING & MARKET ANALYSIS
-
 </div>
 
 
@@ -1690,8 +3126,10 @@ Live Trading Sessions
 </h4>
 
 <p>
+
 Watch markets being analyzed as price moves and
 observe how potential trading decisions develop.
+
 </p>
 
 </div>
@@ -1712,8 +3150,10 @@ Real-Time Market Analysis
 </h4>
 
 <p>
+
 Follow analysis across Gold, USOIL and Bitcoin
 and understand what traders may be watching.
+
 </p>
 
 </div>
@@ -1734,8 +3174,10 @@ Ask Questions Live
 </h4>
 
 <p>
+
 Ask, discuss and learn why a market situation
 may be approached in a particular way.
+
 </p>
 
 </div>
@@ -1756,8 +3198,11 @@ Practice What You Learn
 </h4>
 
 <p>
-Beginners can use demo trading to practice concepts
-without needing to risk real money while learning.
+
+Use demo trading to practice concepts before
+deciding whether trading with real money is
+appropriate for you.
+
 </p>
 
 </div>
@@ -1791,7 +3236,7 @@ LIVE COMMUNITY LEARNING
 
 
 <!-- =====================================================
-     WHAT YOU LEARN
+     LEARN
 ===================================================== -->
 
 <section id="learn">
@@ -1933,8 +3378,8 @@ Trade Reviews
 </h3>
 
 <p>
-Review successful and unsuccessful trades
-to understand what worked and what could improve.
+Review successful and unsuccessful trades to
+understand what worked and what could improve.
 </p>
 
 </div>
@@ -1954,8 +3399,8 @@ to understand what worked and what could improve.
 
 <div class="container">
 
-
 <div class="community-banner reveal">
+
 
 <div class="label">
 THE COMMUNITY
@@ -1966,7 +3411,6 @@ THE COMMUNITY
 
 You're not
 <br>
-
 learning alone.
 
 </h2>
@@ -1993,6 +3437,10 @@ DISCUSS SETUPS
 </span>
 
 <span class="community-point">
+PRACTICE TOGETHER
+</span>
+
+<span class="community-point">
 REVIEW WINS
 </span>
 
@@ -2014,7 +3462,7 @@ GROW TOGETHER
 
 
 <!-- =====================================================
-     100 YOUNG TRADERS
+     ADMISSION
 ===================================================== -->
 
 <section class="admission" id="admission">
@@ -2048,9 +3496,7 @@ participate, practice and improve.
 
 
 <div class="hundred">
-
 100
-
 </div>
 
 
@@ -2076,9 +3522,7 @@ APPLICATIONS OPEN
 
 
 <h3>
-
 Apply for a place.
-
 </h3>
 
 
@@ -2167,9 +3611,7 @@ QUICK QUESTIONS
 
 
 <h2 class="title reveal">
-
 Before you join.
-
 </h2>
 
 
@@ -2190,9 +3632,33 @@ I've never traded before. Can I join?
 
 <div class="faq-answer">
 
-Yes. The learning journey is designed to include beginners
-starting from scratch as well as people who already have
-some trading experience.
+Yes. The learning journey is designed to include
+beginners starting from scratch as well as people
+who already have some trading experience.
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+How does the process work?
+
+<span class="faq-plus">
++
+</span>
+
+</button>
+
+<div class="faq-answer">
+
+You apply first. Selected participants begin with
+the foundations, move into demo practice on live
+markets and then develop their skills through live
+analysis, community discussion and trade reviews.
 
 </div>
 
@@ -2235,8 +3701,10 @@ Do I need to trade with real money?
 
 <div class="faq-answer">
 
-No. Beginners can use demo trading to practice concepts
-while learning without needing to risk real money.
+No. Beginners start by learning and practicing on
+demo. Moving to real-money trading is an individual
+decision and is not required to participate in the
+learning community.
 
 </div>
 
@@ -2279,10 +3747,10 @@ Is this just a signals group?
 
 <div class="faq-answer">
 
-No. The focus is learning and understanding rather than
-simply copying entries. Live analysis, discussion,
-questions, practice and trade reviews form part of
-the learning process.
+No. The focus is learning and understanding rather
+than simply copying entries. Live analysis, discussion,
+questions, demo practice and trade reviews form part
+of the learning process.
 
 </div>
 
@@ -2304,8 +3772,10 @@ Are profits guaranteed?
 <div class="faq-answer">
 
 No. Financial markets involve risk and trading results
-cannot be guaranteed. The Smart Money Room focuses on
-education, practice and developing market understanding.
+cannot be guaranteed. Demo performance also does not
+guarantee future results with real money. The Smart
+Money Room focuses on education, practice and developing
+market understanding.
 
 </div>
 
@@ -2388,9 +3858,7 @@ src="logo.png"
 alt="The Smart Money Room">
 
 <span>
-
 THE SMART MONEY ROOM
-
 </span>
 
 </div>
@@ -2402,13 +3870,15 @@ THE SMART MONEY ROOM
 Risk Disclaimer:
 </strong>
 
-Trading financial markets involves significant risk and may
-not be suitable for everyone. The Smart Money Room provides
-educational and community-based content only and does not
-guarantee profits or specific trading results. Nothing on
-this website should be considered financial or investment
-advice. Individuals remain responsible for their own
-trading and financial decisions.
+Trading financial markets involves significant risk and
+may not be suitable for everyone. The Smart Money Room
+provides educational and community-based content only
+and does not guarantee profits or specific trading
+results. Demo trading results do not guarantee future
+performance in live markets. Nothing on this website
+should be considered financial or investment advice.
+Individuals remain responsible for their own trading
+and financial decisions.
 
 </div>
 
@@ -2419,13 +3889,11 @@ trading and financial decisions.
 
 <script>
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* NAVIGATION */
 
 const nav = document.getElementById("nav");
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
     nav.classList.toggle(
         "scrolled",
@@ -2435,13 +3903,11 @@ window.addEventListener("scroll",()=>{
 });
 
 
-/* =====================================================
-   SCROLL REVEALS
-===================================================== */
+/* REVEAL */
 
-const observer = new IntersectionObserver(entries=>{
+const observer = new IntersectionObserver(entries => {
 
-    entries.forEach(entry=>{
+    entries.forEach(entry => {
 
         if(entry.isIntersecting){
 
@@ -2454,39 +3920,39 @@ const observer = new IntersectionObserver(entries=>{
     });
 
 },{
-    threshold:.12
+    threshold:.08
 });
 
 
-document.querySelectorAll(".reveal").forEach(el=>{
+document
+.querySelectorAll(".reveal")
+.forEach(el => {
 
     observer.observe(el);
 
 });
 
 
-/* =====================================================
-   FAQ
-===================================================== */
+/* FAQ */
 
-document.querySelectorAll(".faq-question").forEach(question=>{
+document
+.querySelectorAll(".faq-question")
+.forEach(question => {
 
-    question.addEventListener("click",()=>{
+    question.addEventListener("click", () => {
 
         const item = question.parentElement;
 
         const wasOpen =
-        item.classList.contains("active");
-
+            item.classList.contains("active");
 
         document
         .querySelectorAll(".faq-item")
-        .forEach(other=>{
+        .forEach(other => {
 
             other.classList.remove("active");
 
         });
-
 
         if(!wasOpen){
 
@@ -2499,25 +3965,23 @@ document.querySelectorAll(".faq-question").forEach(question=>{
 });
 
 
-/* =====================================================
-   SMOOTH LINKS
-===================================================== */
+/* SMOOTH LINKS */
 
 document
 .querySelectorAll('a[href^="#"]')
-.forEach(link=>{
+.forEach(link => {
 
-    link.addEventListener("click",function(e){
+    link.addEventListener("click", function(e){
 
         const selector =
-        this.getAttribute("href");
+            this.getAttribute("href");
 
         if(selector === "#"){
             return;
         }
 
         const target =
-        document.querySelector(selector);
+            document.querySelector(selector);
 
         if(target){
 
@@ -2531,6 +3995,38 @@ document
         }
 
     });
+
+});
+
+
+/* SUBTLE BACKGROUND PARALLAX */
+
+const techGrid =
+    document.querySelector(".tech-grid");
+
+const ambientGlow =
+    document.querySelector(".ambient-glow");
+
+
+window.addEventListener("scroll", () => {
+
+    const y = window.scrollY;
+
+    if(techGrid){
+
+        techGrid.style.transform =
+            `perspective(850px)
+             rotateX(64deg)
+             translateY(${20 + y * .008}%)`;
+
+    }
+
+    if(ambientGlow){
+
+        ambientGlow.style.marginTop =
+            `${y * .025}px`;
+
+    }
 
 });
 
