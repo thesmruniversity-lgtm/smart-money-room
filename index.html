@@ -1,0 +1,2540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Smart Money Room | Learn Trading From Scratch</title>
+
+<meta name="description" content="Learn trading from scratch for free. Join live market analysis and trading sessions, practice what you learn and build the skills to understand real markets.">
+
+<link rel="icon" type="image/png" href="logo.png">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+
+:root{
+    --bg:#070809;
+    --surface:#0c0e10;
+    --surface2:#101316;
+    --white:#f5f3ed;
+    --muted:#8d9299;
+    --muted2:#62676d;
+    --line:rgba(255,255,255,.09);
+    --gold:#d5ad4f;
+    --gold-soft:rgba(213,173,79,.12);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+    line-height:1.6;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-3;
+    background:
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:72px 72px;
+    mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+
+body:after{
+    content:"";
+    position:fixed;
+    width:800px;
+    height:800px;
+    right:-350px;
+    top:-250px;
+    border-radius:50%;
+    background:rgba(189,143,35,.10);
+    filter:blur(150px);
+    pointer-events:none;
+    z-index:-2;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font:inherit;
+}
+
+img{
+    max-width:100%;
+}
+
+.container{
+    width:min(1160px,90%);
+    margin:auto;
+}
+
+/* tighter than previous version */
+section{
+    padding:95px 0;
+}
+
+.gold{
+    color:var(--gold);
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+nav{
+    position:fixed;
+    top:18px;
+    left:0;
+    width:100%;
+    z-index:1000;
+}
+
+.nav{
+    width:min(1120px,92%);
+    height:68px;
+    margin:auto;
+    padding:0 13px 0 18px;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:20px;
+    background:rgba(8,9,10,.72);
+    backdrop-filter:blur(22px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    transition:.3s;
+    box-shadow:0 20px 60px rgba(0,0,0,.18);
+}
+
+nav.scrolled .nav{
+    background:rgba(8,9,10,.94);
+    border-color:rgba(213,173,79,.20);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    font-family:"Manrope",sans-serif;
+    font-weight:800;
+    font-size:13px;
+    letter-spacing:1.2px;
+}
+
+.brand img{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+}
+
+.navlinks{
+    display:flex;
+    align-items:center;
+    gap:27px;
+    color:#a4a8ad;
+    font-size:13px;
+}
+
+.navlinks a{
+    transition:.2s;
+}
+
+.navlinks a:hover{
+    color:#fff;
+}
+
+.apply-nav{
+    background:var(--white);
+    color:#0a0b0c!important;
+    padding:11px 18px;
+    border-radius:11px;
+    font-weight:700;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    min-height:100vh;
+    padding:145px 0 75px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+}
+
+.hero-glow{
+    position:absolute;
+    width:700px;
+    height:700px;
+    right:-120px;
+    top:40px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(213,173,79,.12),transparent 67%);
+    animation:breathe 7s ease-in-out infinite;
+}
+
+@keyframes breathe{
+    0%,100%{
+        transform:scale(.92);
+        opacity:.6;
+    }
+
+    50%{
+        transform:scale(1.08);
+        opacity:1;
+    }
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:65px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:8px 13px;
+    border:1px solid rgba(213,173,79,.24);
+    background:rgba(213,173,79,.06);
+    border-radius:100px;
+    color:#d8c28b;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1.25px;
+    margin-bottom:27px;
+}
+
+.pulse-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 13px var(--gold);
+    animation:pulse 1.7s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:.35;
+        transform:scale(.75);
+    }
+}
+
+.hero h1{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(58px,7vw,96px);
+    line-height:.91;
+    letter-spacing:-5px;
+}
+
+.hero h1 span{
+    color:#666b71;
+}
+
+.hero-statement{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(22px,2.2vw,30px);
+    line-height:1.25;
+    font-weight:600;
+    margin-top:31px;
+    max-width:680px;
+}
+
+.hero-copy{
+    color:var(--muted);
+    font-size:15px;
+    max-width:650px;
+    margin-top:17px;
+}
+
+.hero-proof{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:26px;
+}
+
+.proof-pill{
+    padding:8px 13px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.02);
+    border-radius:100px;
+    color:#b0b4b8;
+    font-size:10px;
+    letter-spacing:.7px;
+}
+
+.actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:34px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:15px 22px;
+    border-radius:12px;
+    font-size:12px;
+    letter-spacing:.6px;
+    font-weight:800;
+    transition:.3s cubic-bezier(.2,.8,.2,1);
+}
+
+.btn-primary{
+    background:var(--white);
+    color:#08090a;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 35px rgba(255,255,255,.11);
+}
+
+.btn-secondary{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.025);
+}
+
+.btn-secondary:hover{
+    transform:translateY(-3px);
+    border-color:rgba(213,173,79,.38);
+}
+
+
+/* =====================================================
+   HERO LOGO
+===================================================== */
+
+.hero-visual{
+    height:500px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.logo-orbit{
+    width:420px;
+    height:420px;
+    border:1px solid rgba(213,173,79,.17);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    animation:floatLogo 5s ease-in-out infinite;
+}
+
+.logo-orbit:before,
+.logo-orbit:after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.05);
+}
+
+.logo-orbit:before{
+    inset:35px;
+}
+
+.logo-orbit:after{
+    inset:72px;
+}
+
+.logo-orbit img{
+    width:285px;
+    position:relative;
+    z-index:2;
+    filter:drop-shadow(0 30px 45px #000);
+}
+
+@keyframes floatLogo{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-14px);
+    }
+}
+
+.orbit-track{
+    position:absolute;
+    inset:-2px;
+    border-radius:50%;
+    animation:rotate 15s linear infinite;
+}
+
+.orbit-track:after{
+    content:"";
+    position:absolute;
+    top:42px;
+    right:46px;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 24px var(--gold);
+}
+
+@keyframes rotate{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.float-card{
+    position:absolute;
+    padding:13px 16px;
+    border:1px solid var(--line);
+    background:rgba(13,15,17,.82);
+    backdrop-filter:blur(15px);
+    border-radius:14px;
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+.float-card small{
+    display:block;
+    color:#737980;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+.float-card strong{
+    font-size:15px;
+}
+
+.fc-one{
+    left:0;
+    top:110px;
+}
+
+.fc-two{
+    right:-10px;
+    bottom:105px;
+}
+
+
+/* =====================================================
+   GENERAL TYPOGRAPHY
+===================================================== */
+
+.label{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:3px;
+    font-weight:800;
+    margin-bottom:17px;
+}
+
+.title{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(42px,5vw,70px);
+    line-height:1.02;
+    letter-spacing:-3px;
+}
+
+.copy{
+    color:var(--muted);
+    max-width:700px;
+    margin-top:20px;
+    font-size:15px;
+}
+
+
+/* =====================================================
+   HOW IT WORKS
+===================================================== */
+
+.journey{
+    padding-top:80px;
+    padding-bottom:90px;
+}
+
+.journey-intro{
+    max-width:850px;
+}
+
+.path{
+    margin-top:58px;
+    position:relative;
+}
+
+.path-line{
+    position:absolute;
+    left:0;
+    right:0;
+    top:24px;
+    height:1px;
+    background:rgba(255,255,255,.08);
+    overflow:hidden;
+}
+
+.path-line-fill{
+    width:0;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        var(--gold),
+        rgba(213,173,79,.15)
+    );
+    transition:width 2s cubic-bezier(.2,.8,.2,1);
+}
+
+.path.visible .path-line-fill{
+    width:100%;
+}
+
+.path-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:25px;
+    position:relative;
+}
+
+.path-step{
+    position:relative;
+}
+
+.path-dot{
+    width:49px;
+    height:49px;
+    border-radius:50%;
+    background:#090b0c;
+    border:1px solid rgba(213,173,79,.30);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold);
+    font-size:10px;
+    font-weight:700;
+    margin-bottom:28px;
+    transition:.3s;
+}
+
+.path-step:hover .path-dot{
+    background:var(--gold);
+    color:#090909;
+    box-shadow:0 0 30px rgba(213,173,79,.18);
+}
+
+.path-step small{
+    color:#666b71;
+    font-size:9px;
+    letter-spacing:1.5px;
+}
+
+.path-step h3{
+    font-family:"Manrope",sans-serif;
+    font-size:18px;
+    margin-top:7px;
+}
+
+.path-step p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:9px;
+    max-width:190px;
+}
+
+
+/* =====================================================
+   LIVE TRADING
+===================================================== */
+
+.live{
+    padding:105px 0;
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            #0c0e10 13%,
+            #0c0e10 87%,
+            transparent
+        );
+}
+
+.live-grid{
+    display:grid;
+    grid-template-columns:.82fr 1.18fr;
+    gap:70px;
+    align-items:center;
+}
+
+.live-heading-highlight{
+    position:relative;
+    display:inline-block;
+}
+
+.live-heading-highlight:after{
+    content:"";
+    position:absolute;
+    height:2px;
+    left:0;
+    right:0;
+    bottom:-6px;
+    background:linear-gradient(
+        90deg,
+        var(--gold),
+        transparent
+    );
+}
+
+.live-list{
+    margin-top:32px;
+}
+
+.live-row{
+    display:grid;
+    grid-template-columns:42px 1fr;
+    gap:15px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.live-num{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(213,173,79,.07);
+    border:1px solid rgba(213,173,79,.18);
+    color:var(--gold);
+    font-size:10px;
+}
+
+.live-row h4{
+    font-family:"Manrope",sans-serif;
+    font-size:15px;
+}
+
+.live-row p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:3px;
+}
+
+.community-image{
+    position:relative;
+    overflow:hidden;
+    border-radius:27px;
+    border:1px solid var(--line);
+    box-shadow:0 40px 90px rgba(0,0,0,.42);
+}
+
+.community-image img{
+    display:block;
+    width:100%;
+    transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+.community-image:hover img{
+    transform:scale(1.035);
+}
+
+.community-image:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            to top,
+            rgba(5,6,7,.55),
+            transparent 55%
+        );
+    pointer-events:none;
+}
+
+.live-indicator{
+    position:absolute;
+    z-index:3;
+    left:21px;
+    bottom:21px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 13px;
+    border-radius:100px;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(6,7,8,.78);
+    backdrop-filter:blur(15px);
+    font-size:10px;
+    letter-spacing:1px;
+    font-weight:800;
+}
+
+.live-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#e85c5c;
+    box-shadow:0 0 12px #e85c5c;
+    animation:livePulse 1.3s infinite;
+}
+
+@keyframes livePulse{
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:.3;
+        transform:scale(.75);
+    }
+}
+
+
+/* =====================================================
+   WHAT YOU LEARN
+===================================================== */
+
+.learn-head{
+    max-width:900px;
+}
+
+.learn-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:50px;
+}
+
+.learn-card{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.02);
+    border-radius:18px;
+    padding:27px;
+    min-height:185px;
+    transition:.35s;
+}
+
+.learn-card:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,.035);
+    border-color:rgba(213,173,79,.26);
+}
+
+.learn-icon{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    border:1px solid rgba(213,173,79,.18);
+    background:rgba(213,173,79,.06);
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"Manrope",sans-serif;
+    font-size:11px;
+    margin-bottom:23px;
+}
+
+.learn-card h3{
+    font-family:"Manrope",sans-serif;
+    font-size:18px;
+}
+
+.learn-card p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:8px;
+}
+
+
+/* =====================================================
+   COMMUNITY
+===================================================== */
+
+.community{
+    padding:65px 0 75px;
+}
+
+.community-banner{
+    border:1px solid var(--line);
+    border-radius:30px;
+    padding:52px 60px;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(213,173,79,.11),
+            transparent 40%
+        ),
+        #0c0e10;
+}
+
+.community-banner:after{
+    content:"";
+    position:absolute;
+    width:340px;
+    height:340px;
+    right:-170px;
+    bottom:-220px;
+    border:1px solid rgba(213,173,79,.12);
+    border-radius:50%;
+}
+
+.community-banner h2{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(42px,5vw,64px);
+    letter-spacing:-3px;
+    line-height:1;
+}
+
+.community-banner p{
+    color:var(--muted);
+    max-width:650px;
+    margin-top:18px;
+    font-size:14px;
+}
+
+.community-points{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:27px;
+}
+
+.community-point{
+    padding:8px 13px;
+    border-radius:100px;
+    border:1px solid var(--line);
+    font-size:10px;
+    color:#c3c6c9;
+    transition:.25s;
+}
+
+.community-point:hover{
+    border-color:rgba(213,173,79,.35);
+    color:white;
+}
+
+
+/* =====================================================
+   100 YOUNG TRADERS
+===================================================== */
+
+.admission{
+    padding:90px 0 100px;
+    overflow:hidden;
+}
+
+.admission-grid{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:80px;
+    align-items:center;
+}
+
+.hundred{
+    font-family:"Manrope",sans-serif;
+    font-weight:800;
+    font-size:clamp(110px,15vw,200px);
+    line-height:.8;
+    letter-spacing:-13px;
+    background:linear-gradient(
+        135deg,
+        #f6f4ef,
+        #8c7131
+    );
+    -webkit-background-clip:text;
+    color:transparent;
+    margin-top:35px;
+}
+
+.hundred-label{
+    margin-top:28px;
+    color:var(--muted);
+    letter-spacing:3px;
+    font-size:10px;
+}
+
+.admission-card{
+    border:1px solid rgba(213,173,79,.18);
+    border-radius:28px;
+    padding:48px;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(213,173,79,.10),
+            transparent 38%
+        ),
+        #0d0f11;
+}
+
+.open{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#d7c28c;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-bottom:20px;
+}
+
+.admission-card h3{
+    font-family:"Manrope",sans-serif;
+    font-size:36px;
+    letter-spacing:-1.5px;
+}
+
+.admission-card > p{
+    color:var(--muted);
+    font-size:14px;
+    margin-top:14px;
+}
+
+.admission-details{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    margin:30px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+.admission-detail{
+    padding:18px 13px 18px 0;
+}
+
+.admission-detail strong{
+    display:block;
+    font-size:13px;
+}
+
+.admission-detail span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.admission-card .btn{
+    width:100%;
+}
+
+
+/* =====================================================
+   FAQ
+===================================================== */
+
+.faq-wrap{
+    max-width:850px;
+}
+
+.faq-list{
+    margin-top:40px;
+}
+
+.faq-item{
+    border-bottom:1px solid var(--line);
+}
+
+.faq-question{
+    width:100%;
+    border:0;
+    background:none;
+    color:white;
+    padding:22px 0;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    text-align:left;
+    font-family:"Manrope",sans-serif;
+    font-size:16px;
+}
+
+.faq-plus{
+    flex:0 0 30px;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+}
+
+.faq-answer{
+    max-height:0;
+    opacity:0;
+    overflow:hidden;
+    color:var(--muted);
+    font-size:13px;
+    transition:.4s;
+}
+
+.faq-item.active .faq-answer{
+    max-height:180px;
+    opacity:1;
+    padding-bottom:24px;
+}
+
+.faq-item.active .faq-plus{
+    transform:rotate(45deg);
+    color:var(--gold);
+    border-color:rgba(213,173,79,.3);
+}
+
+
+/* =====================================================
+   FINAL CTA
+===================================================== */
+
+.final{
+    text-align:center;
+    padding:75px 0 100px;
+}
+
+.final img{
+    width:88px;
+    margin-bottom:24px;
+}
+
+.final h2{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(50px,7vw,90px);
+    letter-spacing:-5px;
+    line-height:.94;
+}
+
+.final p{
+    color:var(--muted);
+    margin:24px auto 30px;
+    max-width:650px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:45px 0;
+    color:#73787e;
+    font-size:11px;
+}
+
+.footer{
+    display:grid;
+    grid-template-columns:.4fr 1fr;
+    gap:60px;
+}
+
+.footer-brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    color:#d3d4d5;
+    font-weight:700;
+}
+
+.footer-brand img{
+    width:42px;
+}
+
+.disclaimer{
+    line-height:1.7;
+}
+
+
+/* =====================================================
+   SCROLL ANIMATIONS
+===================================================== */
+
+.reveal{
+    opacity:0;
+    transform:translateY(26px);
+    transition:
+        opacity .75s cubic-bezier(.2,.8,.2,1),
+        transform .75s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:none;
+}
+
+.delay1{
+    transition-delay:.08s;
+}
+
+.delay2{
+    transition-delay:.16s;
+}
+
+.delay3{
+    transition-delay:.24s;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:950px){
+
+    .hero-grid,
+    .live-grid,
+    .admission-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-visual{
+        order:-1;
+        height:370px;
+    }
+
+    .logo-orbit{
+        width:300px;
+        height:300px;
+    }
+
+    .logo-orbit img{
+        width:205px;
+    }
+
+    .path-grid{
+        grid-template-columns:1fr 1fr;
+        gap:35px;
+    }
+
+    .path-line{
+        display:none;
+    }
+
+    .learn-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .navlinks a:not(.apply-nav){
+        display:none;
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    section{
+        padding:70px 0;
+    }
+
+    .hero{
+        padding-top:105px;
+        min-height:auto;
+    }
+
+    .hero h1{
+        font-size:clamp(49px,15vw,68px);
+        letter-spacing:-3px;
+    }
+
+    .hero-statement{
+        margin-top:24px;
+    }
+
+    .hero-visual{
+        height:300px;
+    }
+
+    .logo-orbit{
+        width:235px;
+        height:235px;
+    }
+
+    .logo-orbit img{
+        width:160px;
+    }
+
+    .fc-one{
+        left:-3%;
+        top:35px;
+    }
+
+    .fc-two{
+        right:-3%;
+        bottom:30px;
+    }
+
+    .path-grid,
+    .learn-grid{
+        grid-template-columns:1fr;
+    }
+
+    .path-step{
+        border-bottom:1px solid var(--line);
+        padding-bottom:27px;
+    }
+
+    .community-banner{
+        padding:38px 25px;
+        border-radius:22px;
+    }
+
+    .admission-card{
+        padding:34px 24px;
+    }
+
+    .admission-details{
+        grid-template-columns:1fr;
+    }
+
+    .admission-detail{
+        border-bottom:1px solid var(--line);
+    }
+
+    .admission-detail:last-child{
+        border-bottom:0;
+    }
+
+    .hundred{
+        letter-spacing:-8px;
+    }
+
+    .footer{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    .final h2{
+        letter-spacing:-3px;
+    }
+
+}
+
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *:before,
+    *:after{
+        animation:none!important;
+        transition:none!important;
+    }
+
+    .reveal{
+        opacity:1;
+        transform:none;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav id="nav">
+
+<div class="nav">
+
+<a class="brand" href="#top">
+
+    <img
+    src="logo.png"
+    alt="The Smart Money Room">
+
+    <span>
+        THE SMART
+        <span class="gold">MONEY</span>
+        ROOM
+    </span>
+
+</a>
+
+
+<div class="navlinks">
+
+<a href="#how">
+How It Works
+</a>
+
+<a href="#live">
+Live Trading
+</a>
+
+<a href="#learn">
+What You Learn
+</a>
+
+<a href="#community">
+Community
+</a>
+
+<a
+class="apply-nav"
+href="https://docs.google.com/forms/d/e/1FAIpQLSdKaR_BqnCoPvZ1PaFnSC8NfL_ul__vPOVEpHr4CvQFrav9cA/viewform?usp=dialog"
+target="_blank"
+rel="noopener">
+Apply Now
+</a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero" id="top">
+
+<div class="hero-glow"></div>
+
+<div class="container hero-grid">
+
+
+<div class="reveal">
+
+<div class="badge">
+
+<span class="pulse-dot"></span>
+
+FREE TRADING EDUCATION · BEGINNER FRIENDLY
+
+</div>
+
+
+<h1>
+
+START FROM
+<br>
+
+<span>
+ZERO.
+</span>
+
+</h1>
+
+
+<div class="hero-statement">
+
+Learn trading from scratch — free.
+
+</div>
+
+
+<p class="hero-copy">
+
+Join live market analysis and trading sessions,
+practice what you learn, ask questions and build
+the skills to understand the market for yourself.
+
+</p>
+
+
+<div class="hero-proof">
+
+<span class="proof-pill">
+NO TUITION
+</span>
+
+<span class="proof-pill">
+LIVE TRADING
+</span>
+
+<span class="proof-pill">
+BEGINNER FRIENDLY
+</span>
+
+<span class="proof-pill">
+GOLD · USOIL · BTC
+</span>
+
+</div>
+
+
+<div class="actions">
+
+<a
+class="btn btn-primary"
+href="https://docs.google.com/forms/d/e/1FAIpQLSdKaR_BqnCoPvZ1PaFnSC8NfL_ul__vPOVEpHr4CvQFrav9cA/viewform?usp=dialog"
+target="_blank"
+rel="noopener">
+
+APPLY TO JOIN →
+
+</a>
+
+
+<a
+class="btn btn-secondary"
+href="#how">
+
+SEE HOW IT WORKS
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="hero-visual reveal delay1">
+
+<div class="logo-orbit">
+
+<div class="orbit-track"></div>
+
+<img
+src="logo.png"
+alt="The Smart Money Room logo">
+
+</div>
+
+
+<div class="float-card fc-one">
+
+<small>
+LEARNING COST
+</small>
+
+<strong class="gold">
+$0
+</strong>
+
+</div>
+
+
+<div class="float-card fc-two">
+
+<small>
+FOCUS MARKETS
+</small>
+
+<strong>
+GOLD · OIL · BTC
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section class="journey" id="how">
+
+<div class="container">
+
+
+<div class="journey-intro">
+
+<div class="label reveal">
+HOW IT WORKS
+</div>
+
+
+<h2 class="title reveal">
+
+From your first chart
+<br>
+
+to
+
+<span class="gold">
+real market understanding.
+</span>
+
+</h2>
+
+
+<p class="copy reveal">
+
+You don't need previous trading experience.
+Start with the foundations, see those concepts applied
+to live markets, practice them and gradually develop
+your own trading decision-making.
+
+</p>
+
+</div>
+
+
+<div class="path reveal">
+
+<div class="path-line">
+
+<div class="path-line-fill"></div>
+
+</div>
+
+
+<div class="path-grid">
+
+
+<div class="path-step">
+
+<div class="path-dot">
+01
+</div>
+
+<small>
+START
+</small>
+
+<h3>
+Start From Zero
+</h3>
+
+<p>
+Learn the basic language of trading and how markets work.
+</p>
+
+</div>
+
+
+<div class="path-step">
+
+<div class="path-dot">
+02
+</div>
+
+<small>
+LEARN
+</small>
+
+<h3>
+Build The Basics
+</h3>
+
+<p>
+Understand charts, entries, stop losses, structure and risk.
+</p>
+
+</div>
+
+
+<div class="path-step">
+
+<div class="path-dot">
+03
+</div>
+
+<small>
+WATCH
+</small>
+
+<h3>
+See It Live
+</h3>
+
+<p>
+Join live sessions and watch market analysis as price moves.
+</p>
+
+</div>
+
+
+<div class="path-step">
+
+<div class="path-dot">
+04
+</div>
+
+<small>
+PRACTICE
+</small>
+
+<h3>
+Apply It
+</h3>
+
+<p>
+Use demo trading to practice what you're learning.
+</p>
+
+</div>
+
+
+<div class="path-step">
+
+<div class="path-dot">
+05
+</div>
+
+<small>
+GROW
+</small>
+
+<h3>
+Build Independence
+</h3>
+
+<p>
+Work toward understanding and evaluating trades yourself.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LIVE TRADING
+===================================================== -->
+
+<section class="live" id="live">
+
+<div class="container live-grid">
+
+
+<div>
+
+<div class="label reveal">
+
+LIVE TRADING & MARKET ANALYSIS
+
+</div>
+
+
+<h2 class="title reveal">
+
+Learn it.
+<br>
+
+Then
+
+<span class="gold live-heading-highlight">
+see it live.
+</span>
+
+</h2>
+
+
+<p class="copy reveal">
+
+Learning trading theory is only the beginning.
+Our live sessions help connect what you're learning
+to real market situations as they develop.
+
+</p>
+
+
+<div class="live-list">
+
+
+<div class="live-row reveal">
+
+<div class="live-num">
+01
+</div>
+
+<div>
+
+<h4>
+Live Trading Sessions
+</h4>
+
+<p>
+Watch markets being analyzed as price moves and
+observe how potential trading decisions develop.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="live-row reveal delay1">
+
+<div class="live-num">
+02
+</div>
+
+<div>
+
+<h4>
+Real-Time Market Analysis
+</h4>
+
+<p>
+Follow analysis across Gold, USOIL and Bitcoin
+and understand what traders may be watching.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="live-row reveal delay2">
+
+<div class="live-num">
+03
+</div>
+
+<div>
+
+<h4>
+Ask Questions Live
+</h4>
+
+<p>
+Ask, discuss and learn why a market situation
+may be approached in a particular way.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="live-row reveal delay3">
+
+<div class="live-num">
+04
+</div>
+
+<div>
+
+<h4>
+Practice What You Learn
+</h4>
+
+<p>
+Beginners can use demo trading to practice concepts
+without needing to risk real money while learning.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="community-image reveal delay1">
+
+<img
+src="community.jpg"
+alt="Live trading and learning community">
+
+<div class="live-indicator">
+
+<span class="live-dot"></span>
+
+LIVE COMMUNITY LEARNING
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     WHAT YOU LEARN
+===================================================== -->
+
+<section id="learn">
+
+<div class="container">
+
+
+<div class="learn-head">
+
+<div class="label reveal">
+WHAT YOU'LL LEARN
+</div>
+
+
+<h2 class="title reveal">
+
+The skills behind
+<br>
+
+<span class="gold">
+better trading decisions.
+</span>
+
+</h2>
+
+
+<p class="copy reveal">
+
+Trading isn't just finding an entry.
+Understanding markets also means understanding
+risk, psychology, analysis and your own decisions.
+
+</p>
+
+</div>
+
+
+<div class="learn-grid">
+
+
+<div class="learn-card reveal">
+
+<div class="learn-icon">
+01
+</div>
+
+<h3>
+Trading Basics
+</h3>
+
+<p>
+Charts, terminology, orders, price movement,
+entries and stop losses.
+</p>
+
+</div>
+
+
+<div class="learn-card reveal delay1">
+
+<div class="learn-icon">
+02
+</div>
+
+<h3>
+Market Analysis
+</h3>
+
+<p>
+Learn what traders may look for when evaluating
+potential market opportunities.
+</p>
+
+</div>
+
+
+<div class="learn-card reveal delay2">
+
+<div class="learn-icon">
+03
+</div>
+
+<h3>
+Live Trading
+</h3>
+
+<p>
+Connect trading concepts to real market situations
+through live sessions.
+</p>
+
+</div>
+
+
+<div class="learn-card reveal">
+
+<div class="learn-icon">
+04
+</div>
+
+<h3>
+Risk Management
+</h3>
+
+<p>
+Position sizing, stop losses, controlled risk
+and capital protection.
+</p>
+
+</div>
+
+
+<div class="learn-card reveal delay1">
+
+<div class="learn-icon">
+05
+</div>
+
+<h3>
+Trading Psychology
+</h3>
+
+<p>
+Patience, discipline, FOMO, emotional decisions
+and revenge trading.
+</p>
+
+</div>
+
+
+<div class="learn-card reveal delay2">
+
+<div class="learn-icon">
+06
+</div>
+
+<h3>
+Trade Reviews
+</h3>
+
+<p>
+Review successful and unsuccessful trades
+to understand what worked and what could improve.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     COMMUNITY
+===================================================== -->
+
+<section class="community" id="community">
+
+<div class="container">
+
+
+<div class="community-banner reveal">
+
+<div class="label">
+THE COMMUNITY
+</div>
+
+
+<h2>
+
+You're not
+<br>
+
+learning alone.
+
+</h2>
+
+
+<p>
+
+Learn alongside people who are asking questions,
+discussing markets, reviewing decisions and working
+toward the same goal — becoming more knowledgeable,
+disciplined and independent traders.
+
+</p>
+
+
+<div class="community-points">
+
+<span class="community-point">
+ASK QUESTIONS
+</span>
+
+<span class="community-point">
+DISCUSS SETUPS
+</span>
+
+<span class="community-point">
+REVIEW WINS
+</span>
+
+<span class="community-point">
+LEARN FROM LOSSES
+</span>
+
+<span class="community-point">
+GROW TOGETHER
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     100 YOUNG TRADERS
+===================================================== -->
+
+<section class="admission" id="admission">
+
+<div class="container admission-grid">
+
+
+<div class="reveal">
+
+<div class="label">
+THE INITIATIVE
+</div>
+
+
+<h2 class="title">
+
+100 Young
+<br>
+Traders.
+
+</h2>
+
+
+<p class="copy">
+
+We're building a focused learning community
+for people who genuinely want to learn,
+participate, practice and improve.
+
+</p>
+
+
+<div class="hundred">
+
+100
+
+</div>
+
+
+<div class="hundred-label">
+
+PLACES · SELECTIVE ADMISSION
+
+</div>
+
+</div>
+
+
+<div class="admission-card reveal delay1">
+
+
+<div class="open">
+
+<span class="pulse-dot"></span>
+
+APPLICATIONS OPEN
+
+</div>
+
+
+<h3>
+
+Apply for a place.
+
+</h3>
+
+
+<p>
+
+You don't need to already be a trader.
+We're looking for people who are willing to learn,
+participate in live sessions, practice and stay consistent.
+
+</p>
+
+
+<div class="admission-details">
+
+
+<div class="admission-detail">
+
+<strong>
+$0
+</strong>
+
+<span>
+MEMBERSHIP FEE
+</span>
+
+</div>
+
+
+<div class="admission-detail">
+
+<strong>
+Beginner
+</strong>
+
+<span>
+FRIENDLY
+</span>
+
+</div>
+
+
+<div class="admission-detail">
+
+<strong>
+Live
+</strong>
+
+<span>
+LEARNING
+</span>
+
+</div>
+
+</div>
+
+
+<a
+class="btn btn-primary"
+href="https://docs.google.com/forms/d/e/1FAIpQLSdKaR_BqnCoPvZ1PaFnSC8NfL_ul__vPOVEpHr4CvQFrav9cA/viewform?usp=dialog"
+target="_blank"
+rel="noopener">
+
+APPLY FOR A PLACE →
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FAQ
+===================================================== -->
+
+<section id="faq">
+
+<div class="container faq-wrap">
+
+
+<div class="label reveal">
+QUICK QUESTIONS
+</div>
+
+
+<h2 class="title reveal">
+
+Before you join.
+
+</h2>
+
+
+<div class="faq-list">
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+I've never traded before. Can I join?
+
+<span class="faq-plus">
++
+</span>
+
+</button>
+
+<div class="faq-answer">
+
+Yes. The learning journey is designed to include beginners
+starting from scratch as well as people who already have
+some trading experience.
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+Is it really free?
+
+<span class="faq-plus">
++
+</span>
+
+</button>
+
+<div class="faq-answer">
+
+Yes. Participation in the current 100 Young Traders
+initiative is free for selected participants.
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+Do I need to trade with real money?
+
+<span class="faq-plus">
++
+</span>
+
+</button>
+
+<div class="faq-answer">
+
+No. Beginners can use demo trading to practice concepts
+while learning without needing to risk real money.
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+Which markets do you focus on?
+
+<span class="faq-plus">
++
+</span>
+
+</button>
+
+<div class="faq-answer">
+
+The primary markets are Gold (XAUUSD),
+USOIL and Bitcoin (BTC).
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+Is this just a signals group?
+
+<span class="faq-plus">
++
+</span>
+
+</button>
+
+<div class="faq-answer">
+
+No. The focus is learning and understanding rather than
+simply copying entries. Live analysis, discussion,
+questions, practice and trade reviews form part of
+the learning process.
+
+</div>
+
+</div>
+
+
+<div class="faq-item reveal">
+
+<button class="faq-question">
+
+Are profits guaranteed?
+
+<span class="faq-plus">
++
+</span>
+
+</button>
+
+<div class="faq-answer">
+
+No. Financial markets involve risk and trading results
+cannot be guaranteed. The Smart Money Room focuses on
+education, practice and developing market understanding.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL CTA
+===================================================== -->
+
+<section class="final">
+
+<div class="container reveal">
+
+
+<img
+src="logo.png"
+alt="The Smart Money Room">
+
+
+<div class="label">
+
+TRADE · LEARN · GROW TOGETHER
+
+</div>
+
+
+<h2>
+
+READY TO
+<br>
+START LEARNING?
+
+</h2>
+
+
+<p>
+
+No tuition. No membership fee.
+Apply to join the community and begin building
+your understanding of the markets from the ground up.
+
+</p>
+
+
+<a
+class="btn btn-primary"
+href="https://docs.google.com/forms/d/e/1FAIpQLSdKaR_BqnCoPvZ1PaFnSC8NfL_ul__vPOVEpHr4CvQFrav9cA/viewform?usp=dialog"
+target="_blank"
+rel="noopener">
+
+APPLY TO JOIN →
+
+</a>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+<div class="container footer">
+
+
+<div class="footer-brand">
+
+<img
+src="logo.png"
+alt="The Smart Money Room">
+
+<span>
+
+THE SMART MONEY ROOM
+
+</span>
+
+</div>
+
+
+<div class="disclaimer">
+
+<strong>
+Risk Disclaimer:
+</strong>
+
+Trading financial markets involves significant risk and may
+not be suitable for everyone. The Smart Money Room provides
+educational and community-based content only and does not
+guarantee profits or specific trading results. Nothing on
+this website should be considered financial or investment
+advice. Individuals remain responsible for their own
+trading and financial decisions.
+
+</div>
+
+</div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+const nav = document.getElementById("nav");
+
+window.addEventListener("scroll",()=>{
+
+    nav.classList.toggle(
+        "scrolled",
+        window.scrollY > 40
+    );
+
+});
+
+
+/* =====================================================
+   SCROLL REVEALS
+===================================================== */
+
+const observer = new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("visible");
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+},{
+    threshold:.12
+});
+
+
+document.querySelectorAll(".reveal").forEach(el=>{
+
+    observer.observe(el);
+
+});
+
+
+/* =====================================================
+   FAQ
+===================================================== */
+
+document.querySelectorAll(".faq-question").forEach(question=>{
+
+    question.addEventListener("click",()=>{
+
+        const item = question.parentElement;
+
+        const wasOpen =
+        item.classList.contains("active");
+
+
+        document
+        .querySelectorAll(".faq-item")
+        .forEach(other=>{
+
+            other.classList.remove("active");
+
+        });
+
+
+        if(!wasOpen){
+
+            item.classList.add("active");
+
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+   SMOOTH LINKS
+===================================================== */
+
+document
+.querySelectorAll('a[href^="#"]')
+.forEach(link=>{
+
+    link.addEventListener("click",function(e){
+
+        const selector =
+        this.getAttribute("href");
+
+        if(selector === "#"){
+            return;
+        }
+
+        const target =
+        document.querySelector(selector);
+
+        if(target){
+
+            e.preventDefault();
+
+            target.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
